@@ -1,0 +1,187 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>untitled2</title><meta name="generator" content="MATLAB 9.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-03-05"><meta name="DC.source" content="untitled2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% NAMA : Brema Ginda Bukit; NIM : 20302241050; Tugas Fisika Radiasi.</span>
+
+
+<span class="comment">% Menentukan Variabel yang diketahui</span>
+hl1 = 66.5 <span class="comment">% Half-life 1 dalam jam</span>
+hl2 = 6    <span class="comment">% Half-life 2 dalam jam</span>
+a0 = 8.5   <span class="comment">% Aktivitas awal pada t=0 di a1</span>
+
+lambda1 = log(2)/hl1 <span class="comment">% Menghitung nilai Lambda 1</span>
+lambda2 = log(2)/hl2 <span class="comment">% Menghitung nilai Lambda 2</span>
+
+x = [0:0.1:100] <span class="comment">% waktu</span>
+g = @(x) a0*exp(-lambda1*x) <span class="comment">% persamaan aktivitas a1</span>
+a1 = g(x)
+f = @(x) (lambda2/(lambda2-lambda1))*a0*(exp(-lambda1*x)-exp(-lambda2*x)) <span class="comment">% Persamaan aktivitas a2</span>
+y = f(x)
+h = @(x) 5
+
+hold <span class="string">on</span>
+
+<span class="comment">% Mengisi area dimana aktivitas radioaktif dapat digunakan sebagai Medical</span>
+<span class="comment">% Exam</span>
+idx=y&gt;5&amp;y==f(x);
+H=area(x(idx),y(idx),5);
+set(H(1),<span class="string">'FaceColor'</span>,[1 0.5 0]);
+
+plot(x,a1,<span class="string">'g'</span>) <span class="comment">% Aktivitas 1</span>
+plot(x,y, <span class="string">'b'</span>) <span class="comment">% Aktivitas 2</span>
+
+<span class="comment">% Intersection</span>
+x_intersect = fzero(@(x) f(x) - h(x), 0)
+y_intersect = f(x_intersect);
+plot(x_intersect, y_intersect,  <span class="string">'ko'</span>, <span class="string">'MarkerFaceColor'</span>, <span class="string">'g'</span>);
+
+<span class="comment">% Keterangan</span>
+xlabel(<span class="string">'waktu(t)'</span>)
+ylabel(<span class="string">'Activitas'</span>)
+title(<span class="string">'Aktivitas radioaktif terhadap waktu'</span>)
+
+<span class="comment">% Menemukan titik maksimum aktivitas</span>
+[ymax, idx] = max(y)
+xmax = x(idx)
+plot(xmax, ymax, <span class="string">'ro'</span>, <span class="string">'MarkerFaceColor'</span>,<span class="string">'k'</span>); <span class="comment">% tmaks pada a2</span>
+plot(xmax, g(xmax), <span class="string">'ro'</span>, <span class="string">'MarkerFaceColor'</span>,<span class="string">'k'</span>); <span class="comment">% nilai maksimum a1 pada tmask a2</span>
+text(3+xmax,ymax,<span class="string">'max'</span>,<span class="string">'Color'</span>,<span class="string">'red'</span>,<span class="string">'FontSize'</span>,14)
+
+plot(10, g(10), <span class="string">'ro'</span>, <span class="string">'MarkerFaceColor'</span>,<span class="string">'b'</span>) <span class="comment">% Menentukan titik pada t = 10 di a1</span>
+plot(50, g(50), <span class="string">'ro'</span>, <span class="string">'MarkerFaceColor'</span>,<span class="string">'b'</span>) <span class="comment">% Menentukan titik pada t = 50 di a1</span>
+plot(100, g(100), <span class="string">'go'</span>, <span class="string">'MarkerFaceColor'</span>,<span class="string">'b'</span>) <span class="comment">% Menentukan titik pada t = 100 di a1</span>
+plot(10, f(10), <span class="string">'ro'</span>, <span class="string">'MarkerFaceColor'</span>,<span class="string">'b'</span>) <span class="comment">% Menentukan titik pada t = 10 di a2</span>
+plot(50, f(50), <span class="string">'ko'</span>, <span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>) <span class="comment">% Menentukan titik pada t = 50 di a2</span>
+plot(100, f(100), <span class="string">'mo'</span>, <span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>) <span class="comment">% Menentukan titik pada t = 100 di a2</span>
+
+<span class="comment">% Menambahkan label untuk tiap elemen</span>
+[lh, labelhandles] = legend({<span class="string">'Medical Exam'</span>,<span class="string">'Aktivitas 1'</span>,<span class="string">'Aktivitas 2'</span>})
+</pre><pre class="codeoutput">
+</pre><img vspace="5" hspace="5" src="untitled2_01.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% NAMA : Brema Ginda Bukit; NIM : 20302241050; Tugas Fisika Radiasi.
+
+
+% Menentukan Variabel yang diketahui
+hl1 = 66.5 % Half-life 1 dalam jam
+hl2 = 6    % Half-life 2 dalam jam
+a0 = 8.5   % Aktivitas awal pada t=0 di a1
+
+lambda1 = log(2)/hl1 % Menghitung nilai Lambda 1
+lambda2 = log(2)/hl2 % Menghitung nilai Lambda 2
+
+x = [0:0.1:100] % waktu
+g = @(x) a0*exp(-lambda1*x) % persamaan aktivitas a1
+a1 = g(x)
+f = @(x) (lambda2/(lambda2-lambda1))*a0*(exp(-lambda1*x)-exp(-lambda2*x)) % Persamaan aktivitas a2
+y = f(x) 
+h = @(x) 5
+
+hold on
+
+% Mengisi area dimana aktivitas radioaktif dapat digunakan sebagai Medical
+% Exam
+idx=y>5&y==f(x);
+H=area(x(idx),y(idx),5);
+set(H(1),'FaceColor',[1 0.5 0]); 
+
+plot(x,a1,'g') % Aktivitas 1
+plot(x,y, 'b') % Aktivitas 2
+
+% Intersection
+x_intersect = fzero(@(x) f(x) - h(x), 0)
+y_intersect = f(x_intersect);
+plot(x_intersect, y_intersect,  'ko', 'MarkerFaceColor', 'g');
+
+% Keterangan
+xlabel('waktu(t)') 
+ylabel('Activitas')
+title('Aktivitas radioaktif terhadap waktu')
+
+% Menemukan titik maksimum aktivitas
+[ymax, idx] = max(y)
+xmax = x(idx)
+plot(xmax, ymax, 'ro', 'MarkerFaceColor','k'); % tmaks pada a2
+plot(xmax, g(xmax), 'ro', 'MarkerFaceColor','k'); % nilai maksimum a1 pada tmask a2
+text(3+xmax,ymax,'max','Color','red','FontSize',14)
+
+plot(10, g(10), 'ro', 'MarkerFaceColor','b') % Menentukan titik pada t = 10 di a1
+plot(50, g(50), 'ro', 'MarkerFaceColor','b') % Menentukan titik pada t = 50 di a1
+plot(100, g(100), 'go', 'MarkerFaceColor','b') % Menentukan titik pada t = 100 di a1
+plot(10, f(10), 'ro', 'MarkerFaceColor','b') % Menentukan titik pada t = 10 di a2
+plot(50, f(50), 'ko', 'MarkerFaceColor','r') % Menentukan titik pada t = 50 di a2
+plot(100, f(100), 'mo', 'MarkerFaceColor','r') % Menentukan titik pada t = 100 di a2
+
+% Menambahkan label untuk tiap elemen
+[lh, labelhandles] = legend({'Medical Exam','Aktivitas 1','Aktivitas 2'})
+
+
+
+##### SOURCE END #####
+--></body></html>
